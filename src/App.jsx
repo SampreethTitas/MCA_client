@@ -11,6 +11,12 @@ import Timetable from './pages/admin/Timetable';
 
 import Resources from './pages/admin/Resources';
 import Batches from './pages/admin/Batches';
+import AssignStudentsToBatch from './pages/admin/AssignStudentsToBatch';
+
+import FacultyTimetable from './pages/faculty/Timetable';
+
+
+
 
 
 
@@ -86,6 +92,24 @@ const App = () => (
         element={
           <ProtectedRoute role="ADMIN">
             <Batches />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/assign-batches"
+        element={
+          <ProtectedRoute role="ADMIN">
+            <AssignStudentsToBatch />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/faculty/timetable"
+        element={
+          <ProtectedRoute role="FACULTY">
+            <FacultyTimetable />
           </ProtectedRoute>
         }
       />

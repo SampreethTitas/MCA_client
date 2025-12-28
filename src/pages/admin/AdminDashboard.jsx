@@ -10,6 +10,9 @@ const AdminDashboard = () => (
       <li><Link to="/admin/timetable">Timetable</Link></li>
       <li><Link to="/admin/resources">Manage Resources</Link></li>
       <li><Link to="/admin/batches">Manage Batches</Link></li>
+        <li>
+  <Link to="/admin/assign-batches">Assign Students to Batches</Link>
+</li>
 
 
     </ul>
