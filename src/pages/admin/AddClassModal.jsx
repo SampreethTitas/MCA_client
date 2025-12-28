@@ -14,6 +14,8 @@ const AddClassModal = ({
   const [faculty, setFaculty] = useState([]);
   const [resources, setResources] = useState([]);
   const [batches, setBatches] = useState([]);
+  const [isContinuous, setIsContinuous] = useState(false);
+
 
   // Mode
   const [isLab, setIsLab] = useState(false);
@@ -77,22 +79,24 @@ const AddClassModal = ({
         section,
         day: slot.day,
         period: slot.period,
+        isContinuous,
         sessions: isLab
-          ? sessions.map(s => ({
-              subject: form.subject,
-              faculty: s.faculty,
-              room: s.room,
-              batch: s.batch
+            ? sessions.map(s => ({
+                subject: form.subject,
+                faculty: s.faculty,
+                room: s.room,
+                batch: s.batch
             }))
-          : [
-              {
+            : [
+                {
                 subject: form.subject,
                 faculty: form.faculty,
                 room: form.room,
                 batch: null
-              }
+                }
             ]
-      };
+        };
+
 
       await api.post('/admin/timetable/slot', payload);
 
@@ -168,6 +172,15 @@ const AddClassModal = ({
         {/* LAB MODE */}
         {isLab && (
           <>
+          <label style={{ display: 'block', marginBottom: 10 }}>
+            <input
+                type="checkbox"
+                checked={isContinuous}
+                onChange={e => setIsContinuous(e.target.checked)}
+            />
+            {' '}Continuous Lab (2 periods)
+            </label>
+
             <h4>Lab Sessions</h4>
 
             {sessions.map((s, idx) => (
