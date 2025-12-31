@@ -15,6 +15,7 @@ import AssignStudentsToBatch from './pages/admin/AssignStudentsToBatch';
 
 import FacultyTimetable from './pages/faculty/Timetable';
 
+import Attendance from './pages/faculty/Attendance';
 
 
 
@@ -110,6 +111,15 @@ const App = () => (
         element={
           <ProtectedRoute role="FACULTY">
             <FacultyTimetable />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/faculty/attendance/:timetableId"
+        element={
+          <ProtectedRoute role="FACULTY">
+            <Attendance />
           </ProtectedRoute>
         }
       />

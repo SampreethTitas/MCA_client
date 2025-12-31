@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+
 
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
@@ -7,6 +9,8 @@ const PERIODS = [1, 2, 3, 4, 5, 6];
 
 const FacultyTimetable = () => {
   const [slots, setSlots] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     api.get('/faculty/timetable').then(res => {
@@ -44,9 +48,16 @@ const FacultyTimetable = () => {
                             <strong>{s.subject.subjectCode}</strong>
                             <div>{s.batch ? s.batch.name : 'Theory'}</div>
                             <div>{s.room.roomCode}</div>
+                            <button
+                              onClick={() => navigate(`/faculty/attendance/${slot._id}`)}
+                            >
+                              Take Attendance
+                            </button>
                         </div>
+                        
                         ))
                       : ''}
+                      
                   </td>
                 );
               })}
